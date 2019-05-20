@@ -1,6 +1,6 @@
 let canvas = document.querySelector('canvas')
 let scr = canvas.getContext('2d')
-let particle = new Particle(canvas.width/2, canvas.height/2)
+let particle = new Particle(canvas.width/2, canvas.height/2, 45)
 let walls = []
 
 walls.push(new Boundary(100, 100, 100, 400))
@@ -27,4 +27,12 @@ setInterval(()=>draw(), 16)
 
 canvas.onmousemove = e => {
   particle.move(e.x, e.y)
+}
+document.onkeydown = e => {
+  //left
+  if(e.keyCode == 37){
+    particle.turnLeft()
+  }else if(e.keyCode == 39){
+    particle.turnRight()
+  }
 }
