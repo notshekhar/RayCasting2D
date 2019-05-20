@@ -33,9 +33,15 @@ class Ray{
     this.position.y = y
   }
   setDirection(x, y){
-    this.direction.x = x - this.position.x
-    this.direction.y = y - this.position.y
-    this.direction.unit()
+    if(!y){
+      let a = x * Math.PI / 180
+      this.angle += a
+      this.direction = new Vector(Math.cos(this.angle), Math.sin(this.angle))
+    }else{
+      this.direction.x = x - this.position.x
+      this.direction.y = y - this.position.y
+      this.direction.unit()
+    }
   }
   cast(wall){
     let x1 = wall.start.x
