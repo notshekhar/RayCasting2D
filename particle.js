@@ -1,8 +1,9 @@
 class Particle{
-  constructor(x, y){
+  constructor(x, y, angle){
+    this.angle = angle
     this.pos = new Vector(x, y)
     this.rays = new Array()
-    for(let i=0; i<360; i+=1){
+    for(let i=1; i<this.angle; i+=1){
       this.rays.push(new Ray(this.pos.x, this.pos.y, i))
     }
   }
@@ -16,6 +17,16 @@ class Particle{
     this.pos.y = y
     for(let ray of this.rays){
       ray.move(x, y)
+    }
+  }
+  turnRight(){
+    for(let ray of this.rays){
+      ray.setDirection(1)
+    }
+  }
+  turnLeft(){
+    for (let ray of this.rays) {
+      ray.setDirection(-1)
     }
   }
   cast(walls){
